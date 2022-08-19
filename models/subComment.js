@@ -18,6 +18,28 @@ const schema = new mongoose.Schema(
       trim: true,
       type: String,
       required: true
+    },
+    likes: {
+      desc: 'Numbers of likes a comment has',
+      type: Number,
+      trim: true,
+      default: 0
+    },
+    dislikes: {
+      desc: 'Numbers of dislikes a comment has',
+      type: Number,
+      trim: true,
+      default: 0
+    },
+    canUpVote: {
+      desc: 'Whether a comment can be up-voted',
+      type: Boolean,
+      default: true
+    },
+    canDownVote: {
+      desc: 'Whether a comment can be down-voted',
+      type: Boolean,
+      default: true
     }
   },
   {

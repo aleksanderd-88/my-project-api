@@ -20,17 +20,17 @@ module.exports = async (req, res) => {
 
   if(data.like) {
     update = { 
-      likes: comment.likes + data.vote, 
+      likes: comment.canUpVote ? comment.likes + data.vote : (comment.vote > 1 && comment.likes - data.vote), 
       dislikes: comment.vote > 1 && comment.vote - 1,
-      canUpVote: false,
+      canUpVote: !comment.canUpVote,
       canDownVote: true
     }
   } else {
     update = { 
-      dislikes: comment.dislikes + data.vote, 
+      dislikes: comment.canDownVote ? comment.dislikes + data.vote : (comment.vote > 1 && comment.dislikes - data.vote), 
       likes: comment.likes > 1 && comment.likes - 1,
       canUpVote: true,
-      canDownVote: false 
+      canDownVote: !comment.canDownVote
     }
   }
 
